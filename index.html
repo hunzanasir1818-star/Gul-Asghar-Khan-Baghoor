@@ -1,0 +1,1301 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gul Asghar Khan Baghoor - Official Website</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&family=Noto+Sans+Arabic:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- AOS Animation Library -->
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <!-- Lightbox CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.11.4/css/lightbox.min.css">
+    <!-- Leaflet CSS -->
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
+    <style>
+        :root {
+            --primary: #006633;
+            --secondary: #FFFFFF;
+            --accent: #FF9900;
+            --text: #333333;
+            --light-bg: #f8f9fa;
+            --dark-green: #004d26;
+            --box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Montserrat', sans-serif;
+            color: var(--text);
+            line-height: 1.6;
+            overflow-x: hidden;
+            background-color: #f5f5f5;
+        }
+        
+        .urdu {
+            font-family: 'Noto Sans Arabic', sans-serif;
+            direction: rtl;
+        }
+        
+        .container {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        /* Particles.js Container */
+        #particles-js {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            z-index: 0;
+        }
+        
+        /* Header Styles */
+        header {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--dark-green) 100%);
+            color: white;
+            padding: 15px 0;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            box-shadow: var(--box-shadow);
+        }
+        
+        .header-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .logo {
+            display: flex;
+            align-items: center;
+        }
+        
+        .logo-text {
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin-left: 10px;
+        }
+        
+        .logo-text .urdu {
+            font-size: 1.3rem;
+        }
+        
+        .nav-links {
+            display: flex;
+            list-style: none;
+        }
+        
+        .nav-links li {
+            margin-left: 25px;
+        }
+        
+        .nav-links a {
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s;
+            position: relative;
+        }
+        
+        .nav-links a:after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background-color: var(--accent);
+            transition: width 0.3s;
+        }
+        
+        .nav-links a:hover {
+            color: var(--accent);
+        }
+        
+        .nav-links a:hover:after {
+            width: 100%;
+        }
+        
+        .menu-toggle {
+            display: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+        }
+        
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(rgba(0, 80, 40, 0.8), rgba(0, 80, 40, 0.8)), url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" viewBox="0 0 100 100"><rect width="100" height="100" fill="%23006633"/><path d="M0 0L100 100" stroke="%23004d26" stroke-width="2"/><path d="M100 0L0 100" stroke="%23004d26" stroke-width="2"/></svg>');
+            background-size: cover;
+            color: white;
+            padding: 150px 0 100px;
+            text-align: center;
+            position: relative;
+        }
+        
+        .hero-content {
+            max-width: 800px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 1;
+        }
+        
+        .hero h1 {
+            font-size: 3.5rem;
+            margin-bottom: 20px;
+            font-weight: 700;
+        }
+        
+        .hero .urdu {
+            font-size: 2.5rem;
+            margin-bottom: 30px;
+            display: block;
+        }
+        
+        .hero p {
+            font-size: 1.2rem;
+            margin-bottom: 40px;
+        }
+        
+        .hero-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+        }
+        
+        .btn {
+            padding: 12px 30px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s;
+            display: inline-block;
+        }
+        
+        .btn-primary {
+            background-color: var(--accent);
+            color: white;
+        }
+        
+        .btn-primary:hover {
+            background-color: #e58900;
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+        }
+        
+        .btn-outline {
+            border: 2px solid white;
+            color: white;
+        }
+        
+        .btn-outline:hover {
+            background-color: white;
+            color: var(--primary);
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+        }
+        
+        /* Section Styles */
+        .section {
+            padding: 80px 0;
+        }
+        
+        .section-title {
+            text-align: center;
+            margin-bottom: 50px;
+            position: relative;
+        }
+        
+        .section-title h2 {
+            font-size: 2.5rem;
+            color: var(--primary);
+            margin-bottom: 15px;
+        }
+        
+        .section-title:after {
+            content: '';
+            position: absolute;
+            bottom: -15px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 4px;
+            background-color: var(--accent);
+        }
+        
+        /* About Section */
+        .about {
+            background-color: white;
+        }
+        
+        .about-content {
+            display: flex;
+            align-items: center;
+            gap: 50px;
+        }
+        
+        .about-image {
+            flex: 1;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: var(--box-shadow);
+        }
+        
+        .about-image img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+        
+        .about-text {
+            flex: 1;
+        }
+        
+        .about-text h3 {
+            font-size: 1.8rem;
+            margin-bottom: 20px;
+            color: var(--primary);
+        }
+        
+        .about-text p {
+            margin-bottom: 20px;
+        }
+        
+        /* Election Results Section */
+        .election-section {
+            background-color: var(--light-bg);
+            padding: 80px 0;
+        }
+        
+        .election-cards {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 30px;
+            margin-top: 40px;
+        }
+        
+        .election-card {
+            background: white;
+            border-radius: 10px;
+            padding: 25px;
+            box-shadow: var(--box-shadow);
+            flex: 1;
+            min-width: 300px;
+            max-width: 450px;
+        }
+        
+        .election-card h4 {
+            color: var(--primary);
+            margin-bottom: 15px;
+            font-size: 1.2rem;
+        }
+        
+        .progress-bar {
+            width: 100%;
+            height: 20px;
+            background-color: #e9ecef;
+            border-radius: 10px;
+            margin: 15px 0;
+            overflow: hidden;
+        }
+        
+        .progress {
+            height: 100%;
+            background-color: var(--primary);
+            border-radius: 10px;
+            width: var(--w);
+            transition: width 1s ease-in-out;
+        }
+        
+        .progress.accent {
+            background-color: var(--accent);
+        }
+        
+        /* Political Career */
+        .political-career {
+            background-color: white;
+        }
+        
+        .timeline {
+            position: relative;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        .timeline:before {
+            content: '';
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 4px;
+            height: 100%;
+            background-color: var(--primary);
+        }
+        
+        .timeline-item {
+            width: 50%;
+            padding: 20px 40px;
+            position: relative;
+        }
+        
+        .timeline-item:nth-child(odd) {
+            left: 0;
+        }
+        
+        .timeline-item:nth-child(even) {
+            left: 50%;
+        }
+        
+        .timeline-content {
+            background-color: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: var(--box-shadow);
+            position: relative;
+        }
+        
+        .timeline-content:after {
+            content: '';
+            position: absolute;
+            top: 20px;
+            width: 20px;
+            height: 20px;
+            background-color: white;
+            transform: rotate(45deg);
+        }
+        
+        .timeline-item:nth-child(odd) .timeline-content:after {
+            right: -10px;
+        }
+        
+        .timeline-item:nth-child(even) .timeline-content:after {
+            left: -10px;
+        }
+        
+        .timeline-date {
+            font-weight: 600;
+            color: var(--primary);
+            margin-bottom: 10px;
+        }
+        
+        /* Portfolio Section */
+        .portfolio-cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+        
+        .portfolio-card {
+            background-color: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: var(--box-shadow);
+            transition: transform 0.3s;
+        }
+        
+        .portfolio-card:hover {
+            transform: translateY(-10px);
+        }
+        
+        .portfolio-card-header {
+            background-color: var(--primary);
+            color: white;
+            padding: 20px;
+            text-align: center;
+        }
+        
+        .portfolio-card-body {
+            padding: 20px;
+        }
+        
+        .portfolio-icon {
+            font-size: 2.5rem;
+            color: var(--accent);
+            margin-bottom: 15px;
+            text-align: center;
+        }
+        
+        /* Gallery/Poster Section */
+        .gallery {
+            background-color: var(--light-bg);
+        }
+        
+        .gallery-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 25px;
+        }
+        
+        .gallery-item {
+            position: relative;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: var(--box-shadow);
+            height: 250px;
+            cursor: pointer;
+            transition: transform 0.3s;
+        }
+        
+        .gallery-item:hover {
+            transform: translateY(-5px);
+        }
+        
+        .gallery-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s;
+        }
+        
+        .gallery-item:hover img {
+            transform: scale(1.05);
+        }
+        
+        .gallery-caption {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: rgba(0, 102, 51, 0.85);
+            color: white;
+            padding: 15px;
+            transform: translateY(100%);
+            transition: transform 0.3s;
+        }
+        
+        .gallery-item:hover .gallery-caption {
+            transform: translateY(0);
+        }
+        
+        /* Constituency Section */
+        .constituency {
+            background-color: white;
+        }
+        
+        .constituency-content {
+            display: flex;
+            gap: 40px;
+            align-items: center;
+        }
+        
+        .constituency-map {
+            flex: 1;
+            height: 400px;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: var(--box-shadow);
+        }
+        
+        #map {
+            width: 100%;
+            height: 100%;
+        }
+        
+        .constituency-info {
+            flex: 1;
+        }
+        
+        .initiative-list {
+            list-style: none;
+        }
+        
+        .initiative-list li {
+            margin-bottom: 15px;
+            padding-left: 30px;
+            position: relative;
+        }
+        
+        .initiative-list li:before {
+            content: '✓';
+            position: absolute;
+            left: 0;
+            color: var(--primary);
+            font-weight: bold;
+        }
+        
+        /* Contact Section */
+        .contact-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 40px;
+        }
+        
+        .contact-form {
+            background-color: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: var(--box-shadow);
+        }
+        
+        .form-group {
+            margin-bottom: 20px;
+        }
+        
+        .form-group label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: 500;
+        }
+        
+        .form-group input,
+        .form-group textarea {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-family: inherit;
+        }
+        
+        .contact-info {
+            background-color: var(--primary);
+            color: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: var(--box-shadow);
+        }
+        
+        .contact-details {
+            margin-top: 20px;
+        }
+        
+        .contact-details p {
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+        }
+        
+        .contact-details i {
+            margin-right: 10px;
+            color: var(--accent);
+        }
+        
+        /* Footer */
+        footer {
+            background-color: var(--dark-green);
+            color: white;
+            padding: 60px 0 30px;
+        }
+        
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+        
+        .footer-logo {
+            font-size: 1.8rem;
+            font-weight: 700;
+            margin-bottom: 20px;
+        }
+        
+        .footer-links h4 {
+            margin-bottom: 20px;
+            position: relative;
+            padding-bottom: 10px;
+        }
+        
+        .footer-links h4:after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 40px;
+            height: 2px;
+            background-color: var(--accent);
+        }
+        
+        .footer-links ul {
+            list-style: none;
+        }
+        
+        .footer-links li {
+            margin-bottom: 10px;
+        }
+        
+        .footer-links a {
+            color: #ddd;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+        
+        .footer-links a:hover {
+            color: var(--accent);
+        }
+        
+        .social-links {
+            display: flex;
+            gap: 15px;
+            margin-top: 20px;
+        }
+        
+        .social-links a {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            background-color: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            color: white;
+            transition: all 0.3s;
+        }
+        
+        .social-links a:hover {
+            background-color: var(--accent);
+            transform: translateY(-3px);
+        }
+        
+        .copyright {
+            text-align: center;
+            padding-top: 30px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        /* Responsive Styles */
+        @media (max-width: 992px) {
+            .about-content {
+                flex-direction: column;
+            }
+            
+            .constituency-content {
+                flex-direction: column;
+            }
+            
+            .timeline:before {
+                left: 30px;
+            }
+            
+            .timeline-item {
+                width: 100%;
+                padding-left: 70px;
+                padding-right: 0;
+                left: 0 !important;
+            }
+            
+            .timeline-item:nth-child(odd) .timeline-content:after {
+                left: -10px;
+                right: auto;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .nav-links {
+                position: fixed;
+                top: 70px;
+                left: -100%;
+                background-color: var(--primary);
+                width: 100%;
+                height: calc(100vh - 70px);
+                flex-direction: column;
+                align-items: center;
+                justify-content: center;
+                transition: left 0.3s;
+            }
+            
+            .nav-links.active {
+                left: 0;
+            }
+            
+            .nav-links li {
+                margin: 15px 0;
+            }
+            
+            .menu-toggle {
+                display: block;
+            }
+            
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+            
+            .hero .urdu {
+                font-size: 2rem;
+            }
+            
+            .hero-buttons {
+                flex-direction: column;
+                gap: 15px;
+            }
+            
+            .section-title h2 {
+                font-size: 2rem;
+            }
+            
+            .election-cards {
+                flex-direction: column;
+            }
+            
+            .gallery-container {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="container header-container">
+            <div class="logo">
+                <!-- Party Logo Image -->
+                <img src="C:/Users/MNA/Downloads/images%20(1).jfif" alt="Istehkam Pakistan Party Logo" 
+                     style="height: 80px; width: auto; background-color: #ddd; border-radius: 50px;">
+                <div class="logo-text">
+                    Gul Asghar Khan <span class="urdu">گُل اصغر خان بگھُور</span>
+                </div>
+            </div>
+            
+            <div class="menu-toggle">
+                <i class="fas fa-bars"></i>
+            </div>
+            
+            <ul class="nav-links">
+                <li><a href="#home">Home</a></li>
+                <li><a href="#about">About</a></li>
+                <li><a href="#election">Election Results</a></li>
+                <li><a href="#political-career">Political Career</a></li>
+                <li><a href="#portfolio">Portfolio</a></li>
+                <li><a href="#gallery">Gallery</a></li>
+                <li><a href="#constituency">Constituency</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero" id="home">
+        <div id="particles-js"></div>
+        <div class="container hero-content">
+            <h1 data-aos="fade-down" data-aos-duration="1000">Gul Asghar Khan Baghoor</h1>
+            <span class="urdu" data-aos="fade-down" data-aos-duration="1000" data-aos-delay="200">گُل اصغر خان بگھُور</span>
+            <p data-aos="fade-up" data-aos-duration="1000" data-aos-delay="400">Member of National Assembly of Pakistan & Federal Parliamentary Secretary for Communications</p>
+            <div class="hero-buttons" data-aos="fade-up" data-aos-duration="1000" data-aos-delay="600">
+                <a href="#contact" class="btn btn-primary">Get in Touch</a>
+                <a href="#portfolio" class="btn btn-outline">Learn More</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section class="section about" id="about">
+        <div class="container">
+            <div class="section-title" data-aos="fade-up">
+                <h2>About</h2>
+            </div>
+            
+            <div class="about-content">
+                <div class="about-image" data-aos="fade-right">
+                         <img src="file:///C:/Users/MNA/Downloads/GA.jpeg" 
+                         alt="Gul Asghar Khan Baghoor"
+                         onerror="this.onerror=null; this.src=''; this.parentNode.classList.add('image-failed')">
+                    
+                </div>
+                
+                <div class="about-text" data-aos="fade-left">
+                    <h3>Political Leader & Public Servant</h3>
+                    <p class="urdu">گُل اصغر خان بگھُور پاکستان کے ایک ممتاز سیاستدان ہیں جو فروری 2024 سے پاکستان کی قومی اسمبلی کے رکن ہیں۔ ستمبر 2024 میں انہیں حکومت پاکستان کے وزارت مواصلات کے وفاقی پارلیمانی سیکرٹری کے عہدے پر تقرر کیا گیا۔</p>
+                    <p>Gul Asghar Khan Baghoor is a prominent Pakistani politician who has been a member of the National Assembly of Pakistan since February 2024. In September 2024, he was appointed as Federal Parliamentary Secretary for Ministry of Communications, Government of Pakistan.</p>
+                    <p>He represents the constituency NA-88 Khushab-II and is a member of the Istehkam-e-Pakistan Party (IPP). His dedication to public service and development initiatives has made him a respected figure in Pakistani politics.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Election Results Section -->
+    <section class="election-section" id="election">
+        <div class="container">
+            <div class="section-title" data-aos="fade-up">
+                <h2>Election Results 2024</h2>
+            </div>
+            
+            <div class="election-cards">
+                <div class="election-card" data-aos="fade-right" data-aos-delay="200">
+                    <h4>Winner: Gul Asghar Khan Baghoor (IPP)</h4>
+                    <p>Votes: 82,577</p>
+                    <div class="progress-bar">
+                        <div class="progress" style="--w: 56.28%;"></div>
+                    </div>
+                    <small>~56.28% vote share</small>
+                </div>
+                
+                <div class="election-card" data-aos="fade-left" data-aos-delay="400">
+                    <h4>Runner-up: Moazzam Sher (Independent, PTI-supported)</h4>
+                    <p>Votes: 64,156</p>
+                    <div class="progress-bar">
+                        <div class="progress accent" style="--w: 43.72%;"></div>
+                    </div>
+                    <small>~43.72% vote share</small>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Political Career Section -->
+    <section class="section political-career" id="political-career">
+        <div class="container">
+            <div class="section-title" data-aos="fade-up">
+                <h2>Political Career</h2>
+            </div>
+            
+            <div class="timeline">
+                <div class="timeline-item" data-aos="fade-right">
+                    <div class="timeline-content">
+                        <div class="timeline-date">February 2024</div>
+                        <h3>Elected to National Assembly</h3>
+                        <p>Elected from NA-88 Khushab-II as a candidate of Istehkam-e-Pakistan Party (IPP) with 82,577 votes.</p>
+                    </div>
+                </div>
+                
+                <div class="timeline-item" data-aos="fade-left">
+                    <div class="timeline-content">
+                        <div class="timeline-date">September 2024</div>
+                        <h3>Appointed Parliamentary Secretary</h3>
+                        <p>Became Federal Parliamentary Secretary for Ministry of Communications, Government of Pakistan.</p>
+                    </div>
+                </div>
+                
+                <div class="timeline-item" data-aos="fade-right">
+                    <div class="timeline-content">
+                        <div class="timeline-date">2024 - Present</div>
+                        <h3>Ongoing Service</h3>
+                        <p>Continuing to serve the people of NA-88 Khushab-II and working on developmental projects in the constituency.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Portfolio Section -->
+    <section class="section portfolio" id="portfolio">
+        <div class="container">
+            <div class="section-title" data-aos="fade-up">
+                <h2>Portfolio & Responsibilities</h2>
+            </div>
+            
+            <div class="portfolio-cards">
+                <div class="portfolio-card" data-aos="flip-left" data-aos-delay="200">
+                    <div class="portfolio-card-header">
+                        <h3>Member of National Assembly</h3>
+                    </div>
+                    <div class="portfolio-card-body">
+                        <div class="portfolio-icon">
+                            <i class="fas fa-landmark"></i>
+                        </div>
+                        <p>Representing the people of NA-88 Khushab-II in the Parliament of Pakistan since February 2024.</p>
+                    </div>
+                </div>
+                
+                <div class="portfolio-card" data-aos="flip-left" data-aos-delay="400">
+                    <div class="portfolio-card-header">
+                        <h3>Parliamentary Secretary</h3>
+                    </div>
+                    <div class="portfolio-card-body">
+                        <div class="portfolio-icon">
+                            <i class="fas fa-road"></i>
+                        </div>
+                        <p>Overseeing the development and maintenance of national communication infrastructure.</p>
+                    </div>
+                </div>
+                
+                <div class="portfolio-card" data-aos="flip-left" data-aos-delay="600">
+                    <div class="portfolio-card-header">
+                        <h3>Public Service</h3>
+                    </div>
+                    <div class="portfolio-card-body">
+                        <div class="portfolio-icon">
+                            <i class="fas fa-hands-helping"></i>
+                        </div>
+                        <p>Committed to addressing constituent concerns and improving quality of life in Khushab.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Gallery/Poster Section -->
+    <section class="section gallery" id="gallery">
+        <div class="container">
+            <div class="section-title" data-aos="fade-up">
+                <h2>Gallery & Posters</h2>
+            </div>
+            
+            <div class="gallery-container">
+                <div class="gallery-item" data-aos="zoom-in" data-aos-delay="200">
+                    <a href="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='800' height='600' viewBox='0 0 800 600'><rect width='800' height='600' fill='%23006633'/><text x='400' y='300' font-family='Arial' font-size='24' text-anchor='middle' fill='white'>Campaign Poster 1</text></svg>" data-lightbox="gallery" data-title="Election Campaign 2024 - Public gathering in Khushab">
+                       <img src="file:///C:/Users/MNA/Downloads/WhatsApp%20Image%202025-08-22%20at%204.58.03%20PM.jpeg" 
+                         alt="Gul Asghar Khan Baghoor"
+                         onerror="this.onerror=null; this.src=''; this.parentNode.classList.add('image-failed')">
+                    </a>
+                    <div class="gallery-caption">
+                        <h4>Election Campaign 2024</h4>
+                        <p>Public gathering in Khushab</p>
+                    </div>
+                </div>
+                
+                <div class="gallery-item" data-aos="zoom-in" data-aos-delay="300">
+                    <a href="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='800' height='600' viewBox='0 0 800 600'><rect width='800' height='600' fill='%23FF9900'/><text x='400' y='300' font-family='Arial' font-size='24' text-anchor='middle' fill='white'>Campaign Poster 2</text></svg>" data-lightbox="gallery" data-title="Victory Celebration - With supporters after winning election">
+                        <img src="file:///C:/Users/MNA/Downloads/WhatsApp%20Image%202025-08-22%20at%204.51.45%20PM.jpeg" 
+                         alt="Gul Asghar Khan Baghoor"
+                         onerror="this.onerror=null; this.src=''; this.parentNode.classList.add('image-failed')">
+                    </a>
+                    <div class="gallery-caption">
+                        <h4>Victory Celebration</h4>
+                        <p>With supporters after winning election</p>
+                    </div>
+                </div>
+                
+                <div class="gallery-item" data-aos="zoom-in" data-aos-delay="400">
+                    <a href="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='800' height='600' viewBox='0 0 800 600'><rect width='800' height='600' fill='%23004d26'/><text x='400' y='300' font-family='Arial' font-size='24' text-anchor='middle' fill='white'>Development Project</text></svg>" data-lightbox="gallery" data-title="Infrastructure Development - Road construction project in constituency">
+                        
+                    <img src="file:///C:/Users/MNA/Downloads/WhatsApp%20Image%202025-08-22%20at%204.32.54%20PM.jpeg" 
+                         alt="Gul Asghar Khan Baghoor"
+                         onerror="this.onerror=null; this.src=''; this.parentNode.classList.add('image-failed')">
+                   
+                    </a>
+                    <div class="gallery-caption">
+                        <h4>Infrastructure Development</h4>
+                        <p>Road construction project in constituency</p>
+                    </div>
+                </div>
+                
+                <div class="gallery-item" data-aos="zoom-in" data-aos-delay="500">
+                    <a href="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='800' height='600' viewBox='0 0 800 600'><rect width='800' height='600' fill='%23006633'/><text x='400' y='300' font-family='Arial' font-size='24' text-anchor='middle' fill='white'>Public Meeting</text></svg>" data-lightbox="gallery" data-title="Public Address - Addressing constituents in NA-88">
+                        <img src="file:///C:/Users/MNA/Downloads/WhatsApp%20Image%202025-08-22%20at%204.51.42%20PM.jpeg" 
+                         alt="Gul Asghar Khan Baghoor"
+                         onerror="this.onerror=null; this.src=''; this.parentNode.classList.add('image-failed')">
+                    </a>
+                    <div class="gallery-caption">
+                        <h4>Public Address</h4>
+                        <p>Addressing constituents in NA-88</p>
+                    </div>
+                </div>
+                
+                <div class="gallery-item" data-aos="zoom-in" data-aos-delay="600">
+                    <a href="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='800' height='600' viewBox='0 0 800 600'><rect width='800' height='600' fill='%23FF9900'/><text x='400' y='300' font-family='Arial' font-size='24' text-anchor='middle' fill='white'>Parliament Session</text></svg>" data-lightbox="gallery" data-title="National Assembly - Participating in parliamentary session">
+                         <img src="file:///C:/Users/MNA/Downloads/pic.jpeg" 
+                         alt="Gul Asghar Khan Baghoor"
+                         onerror="this.onerror=null; this.src=''; this.parentNode.classList.add('image-failed')">
+                    </a>
+                    <div class="gallery-caption">
+                        <h4>National Assembly</h4>
+                        <p>Participating in parliamentary session</p>
+                    </div>
+                </div>
+                
+                <div class="gallery-item" data-aos="zoom-in" data-aos-delay="700">
+                    <a href="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='800' height='600' viewBox='0 0 800 600'><rect width='800' height='600' fill='%23004d26'/><text x='400' y='300' font-family='Arial' font-size='24' text-anchor='middle' fill='white'>Community Service</text></svg>" data-lightbox="gallery" data-title="Community Engagement - Meeting with local community leaders">
+                      
+                      <img src="file:///C:/Users/MNA/Downloads/img.jpeg" 
+                         alt="Gul Asghar Khan Baghoor"
+                         onerror="this.onerror=null; this.src=''; this.parentNode.classList.add('image-failed')">
+                    
+                    </a>
+                    <div class="gallery-caption">
+                        <h4>Community Engagement</h4>
+                        <p>Meeting with local community leaders</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Constituency Section -->
+    <section class="section constituency" id="constituency">
+        <div class="container">
+            <div class="section-title" data-aos="fade-up">
+                <h2>Constituency NA-88 Khushab-II</h2>
+            </div>
+            
+            <div class="constituency-content">
+                <div class="constituency-map" data-aos="fade-right">
+                    <div id="map">    <img src="file:///C:/Users/MNA/Downloads/NA-88_Khushab-II_(2024).svg.png" alt="NA-88 Khushab-II Map"></div>
+                </div>
+                
+                <div class="constituency-info" data-aos="fade-left">
+                    <h3>About Khushab</h3>
+                    <p>Khushab District is located in Punjab province, Pakistan. It is known for its agriculture, salt mines, and historical significance.</p>
+                    
+                    <h3>Development Initiatives</h3>
+                    <ul class="initiative-list">
+                        <li>Road infrastructure development</li>
+                        <li>Educational facilities improvement</li>
+                        <li>Healthcare access expansion</li>
+                        <li>Clean water initiatives</li>
+                        <li>Agricultural support programs</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section class="section contact" id="contact">
+        <div class="container">
+            <div class="section-title" data-aos="fade-up">
+                <h2>Contact</h2>
+            </div>
+            
+            <div class="contact-content">
+                <div class="contact-form" data-aos="fade-right">
+                    <h3>Send a Message</h3>
+                    <form id="contactForm">
+                        <div class="form-group">
+                            <label for="name">Name</label>
+                            <input type="text" id="name" name="name" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="email">Email</label>
+                            <input type="email" id="email" name="email" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="subject">Subject</label>
+                            <input type="text" id="subject" name="subject" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="message">Message</label>
+                            <textarea id="message" name="message" rows="5" required></textarea>
+                        </div>
+                        
+                        <button type="submit" class="btn btn-primary">Send Message</button>
+                    </form>
+                </div>
+                
+                <div class="contact-info" data-aos="fade-left">
+                    <h3>Contact Information</h3>
+                    
+                    <div class="contact-details">
+                        <p><i class="fas fa-map-marker-alt"></i> National Assembly of Pakistan, Constitution Avenue, Islamabad</p>
+                        <p><i class="fas fa-phone"></i> +92-51-920-XXXX</p>
+                        <p><i class="fas fa-envelope"></i> contact@gulasgharkhan.com</p>
+                        <p><i class="fas fa-clock"></i> Monday to Friday: 9:00 AM - 5:00 PM</p>
+                    </div>
+                    
+                    <div class="social-links">
+                        <a href="https://www.facebook.com/share/1A5Yy19RsY/"><i class="fab fa-facebook-f"></i></a>
+                        <a href="https://x.com/gulasghar?t=NOBigTyfqT-lNCOsQkWFjw&s=09"><i class="fab fa-twitter"></i></a>
+                        <a href="https://www.instagram.com/engineer_gul_asghar_baghoor?igsh=M3Fic3JxeXgyZWti"><i class="fab fa-instagram"></i></a>
+                        <a href="https://youtube.com/@baghoorofficial?si=PETb-7kpLW7wviC7"><i class="fab fa-youtube"></i></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-about">
+                    <div class="footer-logo">
+                        Gul Asghar Khan <br></br><span class="urdu">گُل اصغر خان بگھُور</span>
+                    </div>
+                    <p>Member of National Assembly of Pakistan and Federal Parliamentary Secretary for Ministry of Communications.</p>
+                </div>
+                
+                <div class="footer-links">
+                    <h4>Quick Links</h4>
+                    <ul>
+                        <li><a href="#home">Home</a></li>
+                        <li><a href="#about">About</a></li>
+                        <li><a href="#election">Election Results</a></li>
+                        <li><a href="#political-career">Political Career</a></li>
+                        <li><a href="#portfolio">Portfolio</a></li>
+                        <li><a href="#gallery">Gallery</a></li>
+                        <li><a href="#constituency">Constituency</a></li>
+                        <li><a href="#contact">Contact</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-links">
+                    <h4>Connect</h4>
+                    <div class="social-links">
+                        <a href="https://www.facebook.com/share/1A5Yy19RsY/"><i class="fab fa-facebook-f"></i></a>
+                        <a href="https://x.com/gulasghar?t=NOBigTyfqT-lNCOsQkWFjw&s=09"><i class="fab fa-twitter"></i></a>
+                        <a href="https://www.instagram.com/engineer_gul_asghar_baghoor?igsh=M3Fic3JxeXgyZWti"><i class="fab fa-instagram"></i></a>
+                        <a href="https://youtube.com/@baghoorofficial?si=PETb-7kpLW7wviC7"><i class="fab fa-youtube"></i></a>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="copyright">
+                <p>&copy; 2025 Gul Asghar Khan Baghoor. All Rights Reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- JavaScript Libraries -->
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.11.4/js/lightbox.min.js"></script>
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/emailjs-com@3.2.0/dist/email.min.js"></script>
+
+    <script>
+        // Initialize AOS (Animate On Scroll)
+        AOS.init({
+            duration: 1000,
+            once: true,
+            offset: 100
+        });
+        
+        // Initialize Particles.js
+        document.addEventListener('DOMContentLoaded', function() {
+            particlesJS('particles-js', {
+                particles: {
+                    number: { value: 80, density: { enable: true, value_area: 800 } },
+                    color: { value: "#ffffff" },
+                    shape: { type: "circle" },
+                    opacity: { value: 0.5, random: true },
+                    size: { value: 3, random: true },
+                    line_linked: {
+                        enable: true,
+                        distance: 150,
+                        color: "#ffffff",
+                        opacity: 0.4,
+                        width: 1
+                    },
+                    move: {
+                        enable: true,
+                        speed: 2,
+                        direction: "none",
+                        random: true,
+                        straight: false,
+                        out_mode: "out",
+                        bounce: false
+                    }
+                },
+                interactivity: {
+                    detect_on: "canvas",
+                    events: {
+                        onhover: { enable: true, mode: "repulse" },
+                        onclick: { enable: true, mode: "push" },
+                        resize: true
+                    }
+                },
+                retina_detect: true
+            });
+        });
+        
+        // Initialize Lightbox
+        lightbox.option({
+            'resizeDuration': 200,
+            'wrapAround': true,
+            'showImageNumberLabel': true,
+            'positionFromTop': 100
+        });
+        
+        // Initialize Map
+        function initMap() {
+            // Coordinates for Khushab, Pakistan
+            const khushab = [32.2967, 72.3525];
+            
+            // Create map
+            const map = L.map('map').setView(khushab, 10);
+            
+            // Add tile layer
+            L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+                attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+            }).addTo(map);
+            
+            // Add marker
+            L.marker(khushab).addTo(map)
+                .bindPopup('<b>NA-88 Khushab-II</b><br>Constituency of Gul Asghar Khan Baghoor')
+                .openPopup();
+            
+            // Add circle to show area
+            L.circle(khushab, {
+                color: '#006633',
+                fillColor: '#006633',
+                fillOpacity: 0.2,
+                radius: 15000
+            }).addTo(map);
+        }
+        
+        // Initialize EmailJS
+        (function() {
+            emailjs.init("YOUR_PUBLIC_KEY"); // Replace with your EmailJS public key
+        })();
+        
+        // Handle contact form submission
+        document.getElementById('contactForm').addEventListener('submit', function(event) {
+            event.preventDefault();
+            
+            // Send form data using EmailJS
+            emailjs.sendForm('YOUR_SERVICE_ID', 'YOUR_TEMPLATE_ID', this)
+                .then(function() {
+                    alert('Your message has been sent successfully!');
+                    document.getElementById('contactForm').reset();
+                }, function(error) {
+                    alert('Failed to send message. Please try again later.');
+                    console.error('EmailJS Error:', error);
+                });
+        });
+        
+        // Mobile menu toggle
+        document.querySelector('.menu-toggle').addEventListener('click', function() {
+            document.querySelector('.nav-links').classList.toggle('active');
+        });
+        
+        // Close mobile menu when clicking on a link
+        document.querySelectorAll('.nav-links a').forEach(link => {
+            link.addEventListener('click', () => {
+                document.querySelector('.nav-links').classList.remove('active');
+            });
+        });
+        
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                
+                const targetId = this.getAttribute('href');
+                if (targetId === '#') return;
+                
+                const targetElement = document.querySelector(targetId);
+                if (targetElement) {
+                    window.scrollTo({
+                        top: targetElement.offsetTop - 70,
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+        
+        // Animate progress bars when they come into view
+        function animateProgressBars() {
+            const progressBars = document.querySelectorAll('.progress');
+            
+            progressBars.forEach(bar => {
+                const rect = bar.getBoundingClientRect();
+                if (rect.top < window.innerHeight && rect.bottom >= 0) {
+                    bar.style.width = bar.style.getPropertyValue('--w');
+                }
+            });
+        }
+        
+        // Initialize map when page loads
+        window.addEventListener('load', function() {
+            initMap();
+        });
+        
+        // Initial check and add scroll listener
+        animateProgressBars();
+        window.addEventListener('scroll', animateProgressBars);
+    </script>
+</body>
+</html>
